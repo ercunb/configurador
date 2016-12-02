@@ -18,6 +18,7 @@ configurações da máquina GNU/Linux, ela deve ser executada em modo de super u
 
 Figura 3.1: Menu principal da ferramenta de configuração
 
+
 --> Configuração da interface de rede
 
 Utilizando-se a ferramenta proposta, existem 2 meios de se configurar interfaces de rede.
@@ -30,7 +31,9 @@ escolhe-se a interface desejada para configuração e depois digita-se o endere�
 desejado com a máscara de rede CIDR. Vide figura 3.2.
 
 ![myimage-alt-tag](https://s16.postimg.org/8legclt6d/dialog_ipestatico.png)
+
 Figura 3.2: Menus da configuração de interface de rede
+
 
 Em background, ao informar as opções pedidas pela ferramenta, são executados os comandos:
 - Comando para limpar qualquer endereço previamente configurado na interface.
@@ -62,9 +65,11 @@ o endereço desejado.
 
 Figura 3.3: Menus da configuração de roteamento estático
 
+
 ![myimage-alt-tag](https://s16.postimg.org/mwxyhibcl/dialog_roteamentoestatico.png)
 
 Figura 3.4: Menus da escolha do tipo de rota
+
 
 Na configuração de uma rota default, a ferramenta executa para IPv4 o comando:
 
@@ -97,6 +102,7 @@ segundo opção da tela dialog inicial, figura 3.5.
 
 Figura 3.5: Menus da configuração do módulo Quagga
 
+
 - Configuração de interface via Quagga
 
 No menu dialog para a configuração das interfaces de rede, é necessário informar quais
@@ -120,6 +126,7 @@ a identidade da maquina ou dispositivo que está sendo utilizado.
 
 Figura 3.6: Menus da configuração do roteamento OSPF via Quagga
 
+
 Tendo informado todos os parâmetros necessários para o OSPF com o protocolo IPv4, as
 configurações desejadas são escritas no aquivo ospfd.conf. Para o OSPFv6, as configurações
 são escritas no arquivo ospfd6.conf.
@@ -141,6 +148,7 @@ para endereçar o servidor Tayga, para fins de respostas a requisições e respo
 ![myimage-alt-tag](https://s16.postimg.org/9q8ihzfn9/dialog_NAT64.png)
 
 Figura 3.7: Menus da configuração do NAT64
+
 
 No menu do NAT64, também são requeridos os endereços das interfaces de rede IPv4 e
 IPv6, logo, para a correta configuração do servidor Tayga, e consequentemente do serviço de
@@ -174,6 +182,7 @@ externos.
 ![myimage-alt-tag](https://s16.postimg.org/6ea7oonw5/dialog_DNS64.png)
 
 Figura 3.8: Menus da configuração do DNS64
+
 
 Ao habilitar-se a configuração do DNS64, quarta opção do menu da figura 3.1, ainda é
 possível autorizar ou não a habilitação de DNSSEC, e se o DNS irá responder autoritativamente
