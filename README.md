@@ -1,4 +1,4 @@
-# configurador
+# READ-ME
 Configurador de VMs Linux
 
 De forma a facilitar a configuração das maquinas virtuais que compõem a topologia de
