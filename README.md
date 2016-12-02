@@ -29,11 +29,33 @@ desejado com a máscara de rede CIDR. Vide figura 3.2.
 
 Em background, ao informar as opções pedidas pela ferramenta, são executados os comandos:
 - Comando para limpar qualquer endereço previamente configurado na interface.
-$ sudo ip addr flush dev <interface de rede>
+
+$ sudo ip addr flush dev "interface de rede"
+
 - Comando para habilitar a interface, caso ela não esteja habilitada.
-$ sudo ip link set <interface de rede> up
+
+$ sudo ip link set "interface de rede" up
+
 - Por fim, há a configuração propriamente dita da interface desejada com seu respectivo
 endereço IP.
-$ sudo ip addr add <endereço IP> dev <interface de rede>
+
+$ sudo ip addr add "endereço IP" dev "interface de rede"
+
 - Para endereçamento IPv6:
-$ sudo ip -6 addr add <endereço IP> dev <interface de rede>
+
+$ sudo ip -6 addr add "endereço IP" dev "interface de rede"
+
+--> Roteamento estático
+
+No dialog da figura 3.3, é possível escolher a opção de configuração de roteamento, onde
+é possível adicionar rotas para redes com endereçamento IPv4 e IPv6. Escolhendo um dos
+tipos de roteamento, é possível configurar tanto rotas para uma rede específica quanto um
+rota default, como ilustra a figura 3.4. Para efetiva configuração de uma rota default, é
+preciso informar o endereço de rede do próximo salto, assim como a interface de saída para
+o endereço desejado.
+Na configuração de uma rota default, a ferramenta executa para IPv4 o comando:
+
+#ip route add default via "IP do próximo salto" dev "interface de rede"
+
+E para IPv6:
+
