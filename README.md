@@ -15,6 +15,7 @@ instalada para uso correto da função. Como a ferramente realiza comandos e alt
 configurações da máquina GNU/Linux, ela deve ser executada em modo de super usuário.
 
 ![myimage-alt-tag](https://s16.postimg.org/dlbwkjyt1/dialog_menuprincipal.png)
+
 Figura 3.1: Menu principal da ferramenta de configuração
 
 --> Configuração da interface de rede
@@ -58,9 +59,11 @@ preciso informar o endereço de rede do próximo salto, assim como a interface d
 o endereço desejado.
 
 ![myimage-alt-tag](https://s16.postimg.org/vll3oxr05/dialog_estatico.png)
+
 Figura 3.3: Menus da configuração de roteamento estático
 
 ![myimage-alt-tag](https://s16.postimg.org/mwxyhibcl/dialog_roteamentoestatico.png)
+
 Figura 3.4: Menus da escolha do tipo de rota
 
 Na configuração de uma rota default, a ferramenta executa para IPv4 o comando:
@@ -91,6 +94,7 @@ As configurações de roteamento e interface de rede podem ser efetuadas escolhe
 segundo opção da tela dialog inicial, figura 3.5.
 
 ![myimage-alt-tag](https://s16.postimg.org/tyvw3peyd/dialog_quagga.png)
+
 Figura 3.5: Menus da configuração do módulo Quagga
 
 - Configuração de interface via Quagga
@@ -113,6 +117,7 @@ pertence. No caso da escolha do OSPF em endereçamento IPv6, também é preciso 
 a identidade da maquina ou dispositivo que está sendo utilizado.
 
 ![myimage-alt-tag](https://s16.postimg.org/4vetjphbp/dialog_roteamentoquagga.png)
+
 Figura 3.6: Menus da configuração do roteamento OSPF via Quagga
 
 Tendo informado todos os parâmetros necessários para o OSPF com o protocolo IPv4, as
@@ -134,6 +139,7 @@ em um endereço IPv4 válido. Por fim, um endereço pertencente a pool IPv4 deve
 para endereçar o servidor Tayga, para fins de respostas a requisições e respostas ICMP.
 
 ![myimage-alt-tag](https://s16.postimg.org/9q8ihzfn9/dialog_NAT64.png)
+
 Figura 3.7: Menus da configuração do NAT64
 
 No menu do NAT64, também são requeridos os endereços das interfaces de rede IPv4 e
@@ -166,6 +172,7 @@ IP dos forwarders IPv4 e IPv6 utilizados para consultas DNS a servidores autorit
 externos.
 
 ![myimage-alt-tag](https://s16.postimg.org/6ea7oonw5/dialog_DNS64.png)
+
 Figura 3.8: Menus da configuração do DNS64
 
 Ao habilitar-se a configuração do DNS64, quarta opção do menu da figura 3.1, ainda é
