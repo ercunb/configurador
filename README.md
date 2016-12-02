@@ -4,7 +4,12 @@
 
 Link para Download da VM com todas as ferramentas de rede.
 
+Usuário: adminvm
+Senha: adminvm
+
 https://1drv.ms/f/s!Ah8Q1rU90pW1biCsnrUZ3DxYvL4
+
+![myimage-alt-tag](https://s13.postimg.org/p3jjpgx1j/print1.png)
 
 Observação: CASO SEJA UTILIZADA OUTRA MÁQUINA VIRTUAL LINUX, FAZER O DOWNLOAD DAS FERRAMENTAS:
 
