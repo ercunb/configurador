@@ -1,4 +1,9 @@
 # READ-ME
+
+Link para Download da VM com todas as ferramentas de rede.
+
+https://1drv.ms/f/s!Ah8Q1rU90pW1biCsnrUZ3DxYvL4
+
 Configurador de VMs Linux
 
 De forma a facilitar a configuração das maquinas virtuais que compõem a topologia de
