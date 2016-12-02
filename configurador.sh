@@ -242,11 +242,15 @@ digita_rota(){
 
 m_snaat(){
 
+fonte_snat(){
+	
 			dialog --title "Digite os enderecos fonte" \
 				--backtitle "Pool de endereços da rede que se deseja realizar SNAT" \
 				--inputbox "Digite ENDERECO_IP/(CIDR)" 0 0 2>/tmp/mux
 			fonte=$(cat /tmp/mux)
+		}
 
+		saida_snat(){
 			dialog --title "Digite o endereco de destino" \
 				--backtitle "Endereço de rede que ira representar os endereços da pool" \
 				--inputbox "Digite ENDERECO_IP" 0 0 2>/tmp/mux
@@ -287,9 +291,39 @@ m_snaat(){
 				echo "Opcao Errada"
 				;;
 			esac
+		}
 
+		configura_snat(){
 		iptables -t nat -F 
 		iptables -t nat -A POSTROUTING -s $fonte -o $st_interface -j SNAT --to $destino
+	}
+
+	dialog --title "Configuracao do SNAT" \
+		   --menu "Entre com os parametros ou execute a configuracao SNAT" 0 0 0 \
+		   "Endereco de origem" "Digite a pool de enderecos da rede que se deseja realizar SNAT"\
+		   "Endereco de saida" "Digite o endereco IP que ira representar os enderecos da pool" \
+		   "Configurar SNAT" "Executa configuração SNAT no sistema" \
+		   "VOLTAR" '' 2> /tmp/opcao
+
+	opt=$(cat /tmp/opcao)
+
+	case $opt in 
+		"Endereco de origem")
+			fonte_snat
+			m_snaat
+			;;
+		"Endereco de saida")
+			saida_snat
+			m_snaat
+			;;
+		"Configurar SNAT")
+			configura_snat
+			m_snaat
+			;;
+		"VOLTAR")
+			voltar
+			;;
+	esac  
 
 }
 
@@ -353,7 +387,8 @@ m_zebra(){
 			"Endereço da interface ${interface[2]}" "${zebra[2]}" \
 			"Endereço da interface ${interface[3]}" "${zebra[3]}" \
 			"Endereço da interface ${interface[4]}" "${zebra[4]}" \
-			"Configurar zebra" "" \
+			"Configurar e habilitar Zebra" "" \
+			"Desabilita zebra no Quagga" "" \
 		        VOLTAR '' 2> /tmp/opcao
 			opt=$(cat /tmp/opcao)
 			case $opt in
@@ -374,8 +409,12 @@ m_zebra(){
 			inf_zebra 4
 			m_zebra $1
 ;;
-        "Configurar zebra")
+        "Configurar e habilitar Zebra")
 			conf_zebra $1
+	;;
+        "Desabilita zebra no Quagga")
+sed -i '/zebra=yes/c\zebra=no' /etc/quagga/daemons
+voltar
 	;;
 		"VOLTAR")
 			mp_zebra 
@@ -389,6 +428,7 @@ esac
 
 conf_zebra(){
 
+sed -i '/zebra=no/c\zebra=yes' /etc/quagga/daemons
 nome=$(hostname)
 
 echo "
@@ -532,30 +572,14 @@ case $opt in
 			"Iniciar config. do NAT64")
 				dialog --yesno 'Deseja realizar SNAT para a rede externa?' 0 0
 				doNAT=$?
-				configIP
 				configNAT64
+				voltar
 				;;
 			"VOLTAR")
 				voltar
 				;;
 			esac
 		}
-
- configIP(){
-
- 	sysctl -w net.ipv6.conf.all.forwarding=1
-	sysctl -w net.ipv4.ip_forward=1
-
- 	# Interface IPv4 #####
- 	sudo ip addr flush dev ${interface[2]}
-	sudo ip link set ${interface[2]} up 
-	sudo ip addr add $ifacev4 dev ${interface[2]}
-
-	# Interface IPv6 #####
-	sudo ip addr flush dev ${interface[1]}
-	sudo ip link set ${interface[1]} up 
-	sudo ip -6 addr add $ifacev6 dev ${interface[1]}
- }
 
 
  configNAT64(){
@@ -664,6 +688,7 @@ dialog	--title "Configuração DNS64" \
 				dialog --yesno 'Deseja que o DNS64 retorne apenas endereços IPv4? (prefixo + ipv4)' 0 0
 				doEXCLUDE=$?
 				write_config
+				voltar
 				;;
 			"VOLTAR")
 				voltar
@@ -734,6 +759,7 @@ write_config(){
 	
 
 	echo -e "\n\nFIM!!!!!!!!!\n\n"
+
 }
 
 v4Forwarder="-"
@@ -787,7 +813,8 @@ ospf_menu(){
 	"Redes diretamente conectadas" "" \
 	"Area ao que o dispositivo pertence" "" \
 	"Id do dispositivo" "" \
-	"Configurar OSPF" "" \
+	"Configurar e habilitar OSPF" "" \
+	"Desabilita OSPF no quagga" "" \
 	VOLTAR '' 2> /tmp/opcao
 	opt=$(cat /tmp/opcao)
 	case $opt in
@@ -801,12 +828,17 @@ ospf_menu(){
 		"Id do dispositivo")
 		m_id_ospfv6 $1
 			;;
-		"Configurar OSPF")
+		"Configurar e habilitar OSPF")
 			if [ $1 -eq 4 ]; then
 		conf_ospfv4
 	else
 		conf_ospfv6
 			fi	
+			;;
+		"Desabilita OSPF no quagga")
+sed -i '/ospfd=yes/c\ospfd=no' /etc/quagga/daemons
+sed -i '/ospf6d=yes/c\ospf6d=no' /etc/quagga/daemons
+voltar
 			;;
 		"VOLTAR")
 	    mp_ospf	
@@ -828,7 +860,8 @@ m_id_ospfv6(){
 }
 
 conf_ospfv4(){
-daemons 4
+sed -i '/ospfd=no/c\ospfd=yes' /etc/quagga/daemons
+sed -i '/ospf6d=yes/c\ospf6d=no' /etc/quagga/daemons
 nome=$(hostname)
 
 echo "
@@ -867,7 +900,8 @@ voltar
 }
 
 conf_ospfv6(){
-daemons 6
+sed -i '/ospf6d=no/c\ospf6d=yes' /etc/quagga/daemons
+sed -i '/ospfd=yes/c\ospfd=no' /etc/quagga/daemons
 nome=$(hostname)
 
 echo "
