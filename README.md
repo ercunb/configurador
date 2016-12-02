@@ -1,8 +1,19 @@
 # READ-ME
 
+----------------x----------------------
+
 Link para Download da VM com todas as ferramentas de rede.
 
 https://1drv.ms/f/s!Ah8Q1rU90pW1biCsnrUZ3DxYvL4
+
+Observação: CASO SEJA UTILIZADA OUTRA MÁQUINA VIRTUAL LINUX, FAZER O DOWNLOAD DAS FERRAMENTAS:
+
+TAYGA, BIND9, DIALOG, BUILD-ESSENTIAL, IPTABLES.
+
+Link pro Tayga 0.9.2: http://www.litech.org/tayga/tayga-0.9.2.tar.bz2
+Para que o script seja corretamente utilizado, extrair a pasta tayga-0.9.2 em alguma pasta na /home.
+
+-----------------x---------------------
 
 Configurador de VMs Linux
 
