@@ -11,6 +11,7 @@ Observação: CASO SEJA UTILIZADA OUTRA MÁQUINA VIRTUAL LINUX, FAZER O DOWNLOAD
 TAYGA, BIND9, DIALOG, BUILD-ESSENTIAL, IPTABLES.
 
 Link pro Tayga 0.9.2: http://www.litech.org/tayga/tayga-0.9.2.tar.bz2
+
 Para que o script seja corretamente utilizado, extrair a pasta tayga-0.9.2 em alguma pasta na /home.
 
 -----------------x---------------------
